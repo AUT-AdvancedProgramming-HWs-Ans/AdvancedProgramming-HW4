@@ -2,7 +2,7 @@
  * @file unique_ptr.h
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header file for UniquePtr class
- * @version 1.0.2
+ * @version 1.0.3
  * @date 2022-05-04
  *
  * @copyright Copyright (c) 2022
@@ -30,6 +30,9 @@ public:
     operator bool() const;
 
     T* get() const;  
+    void reset();
+    void reset(T* __p);
+    T* release();
 
 private:
     T* _p;

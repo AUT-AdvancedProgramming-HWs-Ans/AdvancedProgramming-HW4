@@ -2,7 +2,7 @@
  * @file unique_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for UniquePtr class
- * @version 1.0.2
+ * @version 1.0.3
  * @date 2022-05-04
  *
  * @copyright Copyright (c) 2022
@@ -129,6 +129,57 @@ T* UniquePtr<T>::get() const
     DEBUG_MSG("UniquePtr " << typeid(T).name() << " get member function called");
 
     return _p;
+}
+
+template <typename T>
+void UniquePtr<T>::reset()
+{
+    /**
+     * @brief Reset the pointer and delete the object
+     *
+     * @tparam T
+     * @return void
+     */
+
+    DEBUG_MSG("UniquePtr " << typeid(T).name() << " reset member function called");
+
+    delete _p;
+    _p = nullptr;
+}
+
+template <typename T>
+void UniquePtr<T>::reset(T* __p)
+{
+    /**
+     * @brief Reset the pointer and create a new object
+     *
+     * @param __p
+     * @tparam T
+     * @return void
+     */
+
+    DEBUG_MSG("UniquePtr " << typeid(T).name() << " reset member function with new object called");
+
+    delete _p;
+    _p = __p;
+}
+
+template <typename T>
+T* UniquePtr<T>::release()
+{
+    /**
+     * @brief Release the pointer
+     *
+     * @tparam T
+     * @return T*
+     */
+
+    DEBUG_MSG("UniquePtr " << typeid(T).name() << " release member function called");
+
+    T* temp { _p };
+    _p = nullptr;
+
+    return temp;
 }
 
 template <typename T>
