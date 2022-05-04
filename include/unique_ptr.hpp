@@ -2,8 +2,8 @@
  * @file unique_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for UniquePtr class
- * @version 1.0.1
- * @date 2022-05-03
+ * @version 1.0.2
+ * @date 2022-05-04
  *
  * @copyright Copyright (c) 2022
  *
@@ -69,6 +69,51 @@ UniquePtr<T>::~UniquePtr()
     DEBUG_MSG("UniquePtr " << typeid(T).name() << " destructor called");
     delete _p;
     _p = nullptr;
+}
+
+template <typename T>
+T& UniquePtr<T>::operator*()
+{
+    /**
+     * @brief Overload the * operator
+     *
+     * @tparam T
+     * @return T
+     */
+
+    DEBUG_MSG("UniquePtr " << typeid(T).name() << " * operator called");
+
+    return *_p;
+}
+
+template <typename T>
+T* UniquePtr<T>::operator->()
+{
+    /**
+     * @brief Overload the -> operator
+     *
+     * @tparam T
+     * @return T*
+     */
+
+    DEBUG_MSG("UniquePtr " << typeid(T).name() << " -> operator called");
+
+    return _p;
+}
+
+template <typename T>
+UniquePtr<T>::operator bool() const
+{
+    /**
+     * @brief Overload the bool operator
+     *
+     * @tparam T
+     * @return bool
+     */
+
+    DEBUG_MSG("UniquePtr " << typeid(T).name() << " bool operator called");
+
+    return _p != nullptr;
 }
 
 template <typename T>

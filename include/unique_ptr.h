@@ -2,8 +2,8 @@
  * @file unique_ptr.h
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header file for UniquePtr class
- * @version 1.0.1
- * @date 2022-05-03
+ * @version 1.0.2
+ * @date 2022-05-04
  *
  * @copyright Copyright (c) 2022
  *
@@ -22,8 +22,14 @@ public:
     UniquePtr();
     UniquePtr(T* __p);
     ~UniquePtr();
+    UniquePtr(const UniquePtr& uPtr) = delete;
 
-    T* get() const;
+    UniquePtr& operator=(const UniquePtr& uPtr) = delete;
+    T& operator*();
+    T* operator->();
+    operator bool() const;
+
+    T* get() const;  
 
 private:
     T* _p;
