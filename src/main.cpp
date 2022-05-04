@@ -2,8 +2,8 @@
  * @file main.cpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the main file for testing UniquePtr class
- * @version 1.0.3
- * @date 2022-05-04
+ * @version 1.0.4
+ * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
  *
@@ -38,7 +38,7 @@ int main(int argc, char** argv)
         // std::cout << "******** Default constructor of UniquePtr tests ********" << std::endl;
         // UniquePtr<int> ptr3;
         // std::cout << "ptr3.get() = " << ptr3.get() << std::endl;
-        // std::cout << "*ptr3.get() = " << *ptr3.get() << std::endl;
+        // std::cout << "*ptr3.get() = " << *ptr3.get() << std::endl; // Segmentation fault (nullptr)
 
         // Destructor of UniquePtr tests
         // std::cout << "******** Destructor of UniquePtr tests ********" << std::endl;
@@ -88,6 +88,15 @@ int main(int argc, char** argv)
         //     std::cout << "ptr is not nullptr" << std::endl;
         // }
 
+        // get() member function of UniquePtr tests
+        // std::cout << "******** get() member function of UniquePtr tests ********" << std::endl;
+        // UniquePtr<int> ptr { new int { 10 } };
+        // std::cout << "ptr.get() = " << ptr.get() << std::endl;
+        // std::cout << "*ptr.get() = " << *ptr.get() << std::endl;
+        // *ptr.get() = 20;
+        // std::cout << "*ptr.get() = " << *ptr.get() << std::endl;
+        // std::cout << "ptr.get() = " << ptr.get() << std::endl;
+
         // Reset member function of UniquePtr tests
         // std::cout << "******** Reset member function of UniquePtr tests ********" << std::endl;
         // UniquePtr<int> ptr { new int { 10 } };
@@ -109,6 +118,22 @@ int main(int argc, char** argv)
         // std::cout << "*p = " << *p << std::endl;
         // std::cout << "ptr.get() = " << ptr.get() << std::endl;
         // delete p;
+
+        ////////////////////////////////////////////////
+
+        // Constructor of SharedPtr tests
+        // std::cout << "******** Constructor of SharedPtr tests ********" << std::endl;
+        // SharedPtr<int> ptr1 { new int { 10 } };
+        // std::cout << "ptr1.get() = " << ptr1.get() << std::endl;
+        // std::cout << "*ptr1.get() = " << *ptr1.get() << std::endl;
+
+        // Default constructor of SharedPtr tests
+        // std::cout << "******** Default constructor of SharedPtr tests ********" << std::endl;
+        // SharedPtr<int> ptr2;
+        // std::cout << "ptr2.get() = " << ptr2.get() << std::endl;
+        // std::cout << "*ptr2.get() = " << *ptr2.get() << std::endl; // Segmentation fault (nullptr)
+
+
 
     } else {
         ::testing::InitGoogleTest(&argc, argv);

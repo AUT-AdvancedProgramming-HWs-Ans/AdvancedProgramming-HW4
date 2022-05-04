@@ -2,8 +2,8 @@
  * @file unique_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for UniquePtr class
- * @version 1.0.3
- * @date 2022-05-04
+ * @version 1.0.4
+ * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
  *
@@ -72,7 +72,7 @@ UniquePtr<T>::~UniquePtr()
 }
 
 template <typename T>
-T& UniquePtr<T>::operator*()
+T& UniquePtr<T>::operator*() const
 {
     /**
      * @brief Overload the * operator
@@ -87,7 +87,7 @@ T& UniquePtr<T>::operator*()
 }
 
 template <typename T>
-T* UniquePtr<T>::operator->()
+T* UniquePtr<T>::operator->() const
 {
     /**
      * @brief Overload the -> operator
