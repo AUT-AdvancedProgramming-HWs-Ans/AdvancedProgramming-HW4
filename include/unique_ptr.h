@@ -35,7 +35,7 @@ public:
     T* release();
 
 private:
-    T* _p;    
+    T* _p;
 };
 
 #include "unique_ptr.hpp"
