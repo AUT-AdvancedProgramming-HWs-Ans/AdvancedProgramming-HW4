@@ -2,7 +2,7 @@
  * @file unique_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for UniquePtr class
- * @version 1.0.6
+ * @version 1.0.7
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -36,7 +36,7 @@ UniquePtr<T>::UniquePtr()
      * @post _p is nullptr
      */
 
-    DEBUG_MSG("UniquePtr " << typeid(T).name() << "default constructor called");
+    DEBUG_MSG("UniquePtr " << typeid(T).name() << " default constructor called");
 }
 
 template <typename T>
@@ -194,5 +194,5 @@ T* make_unique(T value)
      */
     DEBUG_MSG("make_unique " << typeid(T).name() << " function called");
 
-    return new T { value };
+    return new T { value }; 
 }

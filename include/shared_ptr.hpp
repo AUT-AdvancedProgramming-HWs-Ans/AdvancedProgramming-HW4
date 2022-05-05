@@ -2,7 +2,7 @@
  * @file shared_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for SharedPtr class
- * @version 1.0.6
+ * @version 1.0.7
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -37,8 +37,8 @@ SharedPtr<T>::SharedPtr()
      * @post _p is nullptr
      */
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << "default constructor called"
-                           << " _count: " << _count);
+    DEBUG_MSG("SharedPtr " << typeid(T).name() << " default constructor called"
+                           << " *_count: " << *_count);
 }
 
 template <typename T>
@@ -56,7 +56,7 @@ SharedPtr<T>::SharedPtr(T* __p)
      */
 
     DEBUG_MSG("SharedPtr " << typeid(T).name() << " constructor called"
-                           << " _count: " << _count);
+                           << " *_count: " << *_count);
 }
 
 template <typename T>
@@ -74,9 +74,35 @@ SharedPtr<T>::SharedPtr(const SharedPtr& sPtr)
      */
 
     DEBUG_MSG("SharedPtr " << typeid(T).name() << " copy constructor called"
-                           << " _count: " << _count);
+                           << " *_count: " << *_count);
 
     ++(*_count);
+}
+
+template <typename T>
+SharedPtr<T>::~SharedPtr()
+{
+    /**
+     * @brief Destructor
+     *
+     * @tparam T
+     * @return void
+     * @post _p is nullptr
+     */
+
+    if (_p != nullptr) {
+
+        DEBUG_MSG("SharedPtr " << typeid(T).name() << " destructor called"
+                               << " *_count: " << *_count);
+
+        if (--(*_count) == 0) {
+            delete _p;
+            delete _count;
+        }
+
+        _p = nullptr;
+        _count = nullptr;
+    }
 }
 
 template <typename T>
@@ -92,7 +118,7 @@ SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr& sPtr)
      */
 
     DEBUG_MSG("SharedPtr " << typeid(T).name() << " assignment operator called"
-                           << " _count: " << _count);
+                           << " *_count: " << *_count);
 
     if (this != &sPtr) {
         _count = sPtr._count;
@@ -115,7 +141,7 @@ T* SharedPtr<T>::get() const
      */
 
     DEBUG_MSG("SharedPtr " << typeid(T).name() << " getter called"
-                           << " _count: " << _count);
+                           << " *_count: " << *_count);
 
     return _p;
 }
@@ -132,7 +158,7 @@ int SharedPtr<T>::use_count() const
      */
 
     DEBUG_MSG("SharedPtr " << typeid(T).name() << " use_count called"
-                           << " _count: " << _count);
+                           << " *_count: " << *_count);
 
     return *_count;
 }

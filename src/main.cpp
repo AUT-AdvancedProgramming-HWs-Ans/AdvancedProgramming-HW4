@@ -2,7 +2,7 @@
  * @file main.cpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the main file for testing UniquePtr class
- * @version 1.0.6
+ * @version 1.0.7
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -17,7 +17,7 @@
 
 int main(int argc, char** argv)
 {
-    if (true) // make false to run unit-tests
+    if (false) // make false to run unit-tests
     {
         // debug section
 
@@ -53,7 +53,7 @@ int main(int argc, char** argv)
             std::cout << "*ptr4.get() = " << *ptr4.get() << std::endl;
             ptr4.~UniquePtr();
             std::cout << "ptr4.get() = " << ptr4.get() << std::endl;
-            std::cout << "*ptr4.get() = " << *ptr4.get() << std::endl;
+            // std::cout << "*ptr4.get() = " << *ptr4.get() << std::endl;
         */
 
         /*
@@ -99,8 +99,8 @@ int main(int argc, char** argv)
             // get() member function of UniquePtr test 8
             // std::cout << "******** get() member function of UniquePtr test ********" << std::endl;
             UniquePtr<int> ptr { new int { 10 } };
-            std::cout << "ptr.get() = " << ptr.get() << std::endl;
             std::cout << "*ptr.get() = " << *ptr.get() << std::endl;
+            std::cout << "ptr.get() = " << ptr.get() << std::endl;
             *ptr.get() = 20;
             std::cout << "*ptr.get() = " << *ptr.get() << std::endl;
             std::cout << "ptr.get() = " << ptr.get() << std::endl;
@@ -191,16 +191,42 @@ int main(int argc, char** argv)
             std::cout << "*ptr2.get() = " << *ptr2.get() << std::endl;
         */
 
-    //    /*
+        /*
 
-        // use_count member function of SharedPtr test 18
-        std::cout << "******** use_count member function of SharedPtr test ********" << std::endl;
-        SharedPtr<int> ptr1 { new int { 10 } };
-        std::cout << "ptr1.use_count() = " << ptr1.use_count() << std::endl;
-        SharedPtr<int> ptr2 { ptr1 };
-        std::cout << "ptr1.use_count() = " << ptr1.use_count() << std::endl;
-        std::cout << "ptr2.use_count() = " << ptr2.use_count() << std::endl;
-        // */
+            // use_count member function of SharedPtr test 18
+            std::cout << "******** use_count member function of SharedPtr test ********" << std::endl;
+            SharedPtr<int> ptr1 { new int { 10 } };
+            std::cout << "ptr1.use_count() = " << ptr1.use_count() << std::endl;
+            SharedPtr<int> ptr2 { ptr1 };
+            std::cout << "ptr1.use_count() = " << ptr1.use_count() << std::endl;
+            std::cout << "ptr2.use_count() = " << ptr2.use_count() << std::endl;
+         */
+
+        /*
+            // get() member function of SharedPtr test 19
+            std::cout << "******** get() member function of SharedPtr test ********" << std::endl;
+            SharedPtr<int> ptr { new int { 10 } };
+            std::cout << "*ptr.get() = " << *ptr.get() << std::endl;
+            std::cout << "ptr.get() = " << ptr.get() << std::endl;
+            *ptr.get() = 20;
+            std::cout << "*ptr.get() = " << *ptr.get() << std::endl;
+            std::cout << "ptr.get() = " << ptr.get() << std::endl;
+        */
+
+        /*
+            // Destructor of SharedPtr test 20
+            std::cout << "******** Destructor of SharedPtr test ********" << std::endl;
+            SharedPtr<int> ptr { new int { 10 } };
+            SharedPtr<int> ptr2;
+            ptr2 = ptr;
+            std::cout << "ptr.get() = " << ptr.get() << std::endl;
+            std::cout << "ptr2.get() = " << ptr2.get() << std::endl;
+            std::cout << "ptr.use_count() = " << ptr.use_count() << std::endl;
+            ptr.~SharedPtr();
+            std::cout << "*ptr2.get() = " << *ptr2.get() << std::endl;
+            std::cout << "ptr2.get() = " << ptr2.get() << std::endl;
+            ptr2.~SharedPtr();
+        */
 
     } else {
         ::testing::InitGoogleTest(&argc, argv);
