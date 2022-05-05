@@ -2,7 +2,7 @@
  * @file shared_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for SharedPtr class
- * @version 1.1.0
+ * @version 1.1.1
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -11,6 +11,7 @@
 
 // Debug section
 
+/*
 #define DEBUG
 
 #ifdef DEBUG
@@ -23,6 +24,7 @@
     do {               \
     } while (false)
 #endif
+*/
 
 template <typename T>
 SharedPtr<T>::SharedPtr()
@@ -37,8 +39,8 @@ SharedPtr<T>::SharedPtr()
      * @post _p is nullptr
      */
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << " default constructor called"
-                           << " *_count: " << *_count);
+    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " default constructor called"
+    //                        << " *_count: " << *_count);
 }
 
 template <typename T>
@@ -55,8 +57,8 @@ SharedPtr<T>::SharedPtr(T* __p)
      * @post _p is not nullptr
      */
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << " constructor called"
-                           << " *_count: " << *_count);
+    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " constructor called"
+    //                        << " *_count: " << *_count);
 }
 
 template <typename T>
@@ -73,10 +75,10 @@ SharedPtr<T>::SharedPtr(const SharedPtr& sPtr)
      * @post _p is not nullptr
      */
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << " copy constructor called"
-                           << " *_count: " << *_count);
+    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " copy constructor called"
+    //                        << " *_count: " << *_count);
 
-    ++(*_count);
+                           ++(*_count);
 }
 
 template <typename T>
@@ -92,14 +94,14 @@ SharedPtr<T>::~SharedPtr()
 
     // if (_p != nullptr) {
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << " destructor called"
-                           << " *_count: " << *_count);
+    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " destructor called"
+    //                        << " *_count: " << *_count);
 
-    if (--(*_count) == 0) {
-        delete _count;
-        _p = nullptr;
-    }
-    // }
+                           if (--(*_count) == 0) {
+                               delete _count;
+                               _p = nullptr;
+                           }
+                           // }
 }
 
 template <typename T>
@@ -114,16 +116,16 @@ SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr& sPtr)
      * @post _p is not nullptr
      */
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << " assignment operator called"
-                           << " *_count: " << *_count);
+    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " assignment operator called"
+    //                        << " *_count: " << *_count);
 
-    if (this != &sPtr) {
-        _count = sPtr._count;
-        ++(*_count);
-        _p = sPtr._p;
-    }
+                           if (this != &sPtr) {
+                               _count = sPtr._count;
+                               ++(*_count);
+                               _p = sPtr._p;
+                           }
 
-    return *this;
+                           return *this;
 }
 
 template <typename T>
@@ -136,10 +138,10 @@ T& SharedPtr<T>::operator*() const
      * @return T
      */
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << " * operator called"
-                           << " *_count: " << *_count);
+    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " * operator called"
+    //                        << " *_count: " << *_count);
 
-    return *_p;
+                           return *_p;
 }
 
 template <typename T>
@@ -152,10 +154,10 @@ T* SharedPtr<T>::operator->() const
      * @return T*
      */
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << " -> operator called"
-                           << " *_count: " << *_count);
+    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " -> operator called"
+    //                        << " *_count: " << *_count);
 
-    return _p;
+                           return _p;
 }
 
 template <typename T>
@@ -168,10 +170,10 @@ SharedPtr<T>::operator bool() const
      * @return bool
      */
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << " bool operator called"
-                           << " *_count: " << *_count);
+    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " bool operator called"
+    //                        << " *_count: " << *_count);
 
-    return _p != nullptr;
+                           return _p != nullptr;
 }
 
 template <typename T>
@@ -185,10 +187,10 @@ T* SharedPtr<T>::get() const
      * @post _p is not nullptr
      */
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << " getter called"
-                           << " *_count: " << *_count);
+    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " getter called"
+    //                        << " *_count: " << *_count);
 
-    return _p;
+                           return _p;
 }
 
 template <typename T>
@@ -202,10 +204,10 @@ int SharedPtr<T>::use_count() const
      * @post _count is not nullptr
      */
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << " use_count called"
-                           << " *_count: " << *_count);
+    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " use_count called"
+    //                        << " *_count: " << *_count);
 
-    return *_count;
+                           return *_count;
 }
 
 template <typename T>
@@ -219,12 +221,12 @@ void SharedPtr<T>::reset()
      * @post _p is nullptr
      */
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << " reset called"
-                           << " *_count: " << *_count);
+    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " reset called"
+    //                        << " *_count: " << *_count);
 
-    delete _p;
-    _p = nullptr;
-    (*_count) = 0;
+                           delete _p;
+                           _p = nullptr;
+                           (*_count) = 0;
 }
 
 template <typename T>
@@ -239,12 +241,12 @@ void SharedPtr<T>::reset(T* __p)
      * @post _p is not nullptr
      */
 
-    DEBUG_MSG("SharedPtr " << typeid(T).name() << " reset called"
-                           << " *_count: " << *_count);
+    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " reset called"
+    //                        << " *_count: " << *_count);
 
-    delete _p;
-    _p = __p;
-    (*_count) = 1;
+                           delete _p;
+                           _p = __p;
+                           (*_count) = 1;
 }
 
 template <typename T>
@@ -259,7 +261,7 @@ T* make_shared(T value)
      * @post _p is not nullptr
      */
 
-    DEBUG_MSG("make_shared " << typeid(T).name() << " called");
+    // DEBUG_MSG("make_shared " << typeid(T).name() << " called");
 
     return new T { value };
 }

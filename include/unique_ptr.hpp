@@ -2,7 +2,7 @@
  * @file unique_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for UniquePtr class
- * @version 1.1.0
+ * @version 1.1.1
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -11,6 +11,7 @@
 
 // Debug section
 
+/*
 #define DEBUG
 
 #ifdef DEBUG
@@ -23,6 +24,7 @@
     do {               \
     } while (false)
 #endif
+*/
 
 template <typename T>
 UniquePtr<T>::UniquePtr()
@@ -36,7 +38,7 @@ UniquePtr<T>::UniquePtr()
      * @post _p is nullptr
      */
 
-    DEBUG_MSG("UniquePtr " << typeid(T).name() << " default constructor called");
+    // DEBUG_MSG("UniquePtr " << typeid(T).name() << " default constructor called");
 }
 
 template <typename T>
@@ -52,7 +54,7 @@ UniquePtr<T>::UniquePtr(T* __p)
      * @post _p is not nullptr
      */
 
-    DEBUG_MSG("UniquePtr " << typeid(T).name() << " constructor called");
+    // DEBUG_MSG("UniquePtr " << typeid(T).name() << " constructor called");
 }
 
 template <typename T>
@@ -66,7 +68,7 @@ UniquePtr<T>::~UniquePtr()
      * @post _p is nullptr
      */
 
-    DEBUG_MSG("UniquePtr " << typeid(T).name() << " destructor called");
+    // DEBUG_MSG("UniquePtr " << typeid(T).name() << " destructor called");
     delete _p;
     _p = nullptr;
 }
@@ -81,7 +83,7 @@ T& UniquePtr<T>::operator*() const
      * @return T
      */
 
-    DEBUG_MSG("UniquePtr " << typeid(T).name() << " * operator called");
+    // DEBUG_MSG("UniquePtr " << typeid(T).name() << " * operator called");
 
     return *_p;
 }
@@ -96,7 +98,7 @@ T* UniquePtr<T>::operator->() const
      * @return T*
      */
 
-    DEBUG_MSG("UniquePtr " << typeid(T).name() << " -> operator called");
+    // DEBUG_MSG("UniquePtr " << typeid(T).name() << " -> operator called");
 
     return _p;
 }
@@ -111,7 +113,7 @@ UniquePtr<T>::operator bool() const
      * @return bool
      */
 
-    DEBUG_MSG("UniquePtr " << typeid(T).name() << " bool operator called");
+    // DEBUG_MSG("UniquePtr " << typeid(T).name() << " bool operator called");
 
     return _p != nullptr;
 }
@@ -126,7 +128,7 @@ T* UniquePtr<T>::get() const
      * @tparam T
      */
 
-    DEBUG_MSG("UniquePtr " << typeid(T).name() << " get member function called");
+    // DEBUG_MSG("UniquePtr " << typeid(T).name() << " get member function called");
 
     return _p;
 }
@@ -141,7 +143,7 @@ void UniquePtr<T>::reset()
      * @return void
      */
 
-    DEBUG_MSG("UniquePtr " << typeid(T).name() << " reset member function called");
+    // DEBUG_MSG("UniquePtr " << typeid(T).name() << " reset member function called");
 
     delete _p;
     _p = nullptr;
@@ -158,7 +160,7 @@ void UniquePtr<T>::reset(T* __p)
      * @return void
      */
 
-    DEBUG_MSG("UniquePtr " << typeid(T).name() << " reset member function with new object called");
+    // DEBUG_MSG("UniquePtr " << typeid(T).name() << " reset member function with new object called");
 
     delete _p;
     _p = __p;
@@ -174,7 +176,7 @@ T* UniquePtr<T>::release()
      * @return T*
      */
 
-    DEBUG_MSG("UniquePtr " << typeid(T).name() << " release member function called");
+    // DEBUG_MSG("UniquePtr " << typeid(T).name() << " release member function called");
 
     T* temp { _p };
     _p = nullptr;
@@ -192,7 +194,7 @@ T* make_unique(T value)
      * @tparam T
      * @return T*
      */
-    DEBUG_MSG("make_unique " << typeid(T).name() << " function called");
+    // DEBUG_MSG("make_unique " << typeid(T).name() << " function called");
 
     return new T { value };
 }
