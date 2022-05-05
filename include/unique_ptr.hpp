@@ -2,7 +2,7 @@
  * @file unique_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for UniquePtr class
- * @version 1.0.8
+ * @version 1.0.9
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -194,5 +194,5 @@ T* make_unique(T value)
      */
     DEBUG_MSG("make_unique " << typeid(T).name() << " function called");
 
-    return new T { value }; 
+    return new T { value };
 }

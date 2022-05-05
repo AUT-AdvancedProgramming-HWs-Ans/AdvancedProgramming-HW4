@@ -2,7 +2,7 @@
  * @file shared_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for SharedPtr class
- * @version 1.0.8
+ * @version 1.0.9
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -190,6 +190,45 @@ int SharedPtr<T>::use_count() const
                            << " *_count: " << *_count);
 
     return *_count;
+}
+
+template <typename T>
+void SharedPtr<T>::reset()
+{
+    /**
+     * @brief Reset the _p and _count
+     *
+     * @tparam T
+     * @return void
+     * @post _p is nullptr
+     */
+
+    DEBUG_MSG("SharedPtr " << typeid(T).name() << " reset called"
+                           << " *_count: " << *_count);
+
+    delete _p;
+    _p = nullptr;
+    (*_count) = 0;
+}
+
+template <typename T>
+void SharedPtr<T>::reset(T* __p)
+{
+    /**
+     * @brief Reset the _p and _count
+     *
+     * @param __p
+     * @tparam T
+     * @return void
+     * @post _p is not nullptr
+     */
+
+    DEBUG_MSG("SharedPtr " << typeid(T).name() << " reset called"
+                           << " *_count: " << *_count);
+
+    delete _p;
+    _p = __p;
+    (*_count) = 1;
 }
 
 template <typename T>

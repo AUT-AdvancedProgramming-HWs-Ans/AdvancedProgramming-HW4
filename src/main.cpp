@@ -2,7 +2,7 @@
  * @file main.cpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the main file for testing UniquePtr class
- * @version 1.0.8
+ * @version 1.0.9
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022

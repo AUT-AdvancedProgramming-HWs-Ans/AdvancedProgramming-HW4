@@ -2,7 +2,7 @@
  * @file shared_ptr.h
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header file for SharedPtr class
- * @version 1.0.8
+ * @version 1.0.9
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -31,6 +31,8 @@ public:
 
     T* get() const;
     int use_count() const;
+    void reset();
+    void reset(T* __p);
 
 private:
     T* _p;
