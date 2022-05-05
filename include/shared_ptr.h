@@ -2,7 +2,7 @@
  * @file shared_ptr.h
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header file for SharedPtr class
- * @version 1.1.1
+ * @version 1.1.2
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022

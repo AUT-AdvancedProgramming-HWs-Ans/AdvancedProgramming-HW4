@@ -2,7 +2,7 @@
  * @file unique_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for UniquePtr class
- * @version 1.1.1
+ * @version 1.1.2
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022

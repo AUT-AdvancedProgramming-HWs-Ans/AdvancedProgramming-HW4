@@ -2,7 +2,7 @@
  * @file main.cpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the main file for testing UniquePtr class
- * @version 1.1.1
+ * @version 1.1.2
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -225,7 +225,11 @@ int main(int argc, char** argv)
             ptr.~SharedPtr();
             std::cout << "*ptr2.get() = " << *ptr2.get() << std::endl;
             std::cout << "ptr2.get() = " << ptr2.get() << std::endl;
+            std::cout << "ptr.get() = " << ptr.get() << std::endl;
             ptr2.~SharedPtr();
+            std::cout << "ptr2.get() = " << ptr2.get() << std::endl;
+            std::cout<< "ptr2.use_count() = " << ptr2.use_count() << std::endl;
+
         */
 
         /*

@@ -2,7 +2,7 @@
  * @file shared_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for SharedPtr class
- * @version 1.1.1
+ * @version 1.1.2
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -78,7 +78,7 @@ SharedPtr<T>::SharedPtr(const SharedPtr& sPtr)
     // DEBUG_MSG("SharedPtr " << typeid(T).name() << " copy constructor called"
     //                        << " *_count: " << *_count);
 
-                           ++(*_count);
+    ++(*_count);
 }
 
 template <typename T>
@@ -92,16 +92,18 @@ SharedPtr<T>::~SharedPtr()
      * @post _p is nullptr
      */
 
-    // if (_p != nullptr) {
+    if (_p != nullptr) {
 
-    // DEBUG_MSG("SharedPtr " << typeid(T).name() << " destructor called"
-    //                        << " *_count: " << *_count);
+        // DEBUG_MSG("SharedPtr " << typeid(T).name() << " destructor called"
+        //                        << " *_count: " << *_count);
 
-                           if (--(*_count) == 0) {
-                               delete _count;
-                               _p = nullptr;
-                           }
-                           // }
+        if (--(*_count) == 0) {
+            delete _p;
+            delete _count;
+        }
+        _p = nullptr;
+        _count = nullptr;
+    }
 }
 
 template <typename T>
@@ -118,14 +120,13 @@ SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr& sPtr)
 
     // DEBUG_MSG("SharedPtr " << typeid(T).name() << " assignment operator called"
     //                        << " *_count: " << *_count);
+    if (this != &sPtr) {
+        _count = sPtr._count;
+        ++(*_count);
+        _p = sPtr._p;
+    }
 
-                           if (this != &sPtr) {
-                               _count = sPtr._count;
-                               ++(*_count);
-                               _p = sPtr._p;
-                           }
-
-                           return *this;
+    return *this;
 }
 
 template <typename T>
@@ -141,7 +142,7 @@ T& SharedPtr<T>::operator*() const
     // DEBUG_MSG("SharedPtr " << typeid(T).name() << " * operator called"
     //                        << " *_count: " << *_count);
 
-                           return *_p;
+    return *_p;
 }
 
 template <typename T>
@@ -157,7 +158,7 @@ T* SharedPtr<T>::operator->() const
     // DEBUG_MSG("SharedPtr " << typeid(T).name() << " -> operator called"
     //                        << " *_count: " << *_count);
 
-                           return _p;
+    return _p;
 }
 
 template <typename T>
@@ -173,7 +174,7 @@ SharedPtr<T>::operator bool() const
     // DEBUG_MSG("SharedPtr " << typeid(T).name() << " bool operator called"
     //                        << " *_count: " << *_count);
 
-                           return _p != nullptr;
+    return _p != nullptr;
 }
 
 template <typename T>
@@ -190,7 +191,7 @@ T* SharedPtr<T>::get() const
     // DEBUG_MSG("SharedPtr " << typeid(T).name() << " getter called"
     //                        << " *_count: " << *_count);
 
-                           return _p;
+    return _p;
 }
 
 template <typename T>
@@ -207,7 +208,10 @@ int SharedPtr<T>::use_count() const
     // DEBUG_MSG("SharedPtr " << typeid(T).name() << " use_count called"
     //                        << " *_count: " << *_count);
 
-                           return *_count;
+    if (_count == nullptr)
+        return 0;
+
+    return *_count;
 }
 
 template <typename T>
@@ -224,9 +228,9 @@ void SharedPtr<T>::reset()
     // DEBUG_MSG("SharedPtr " << typeid(T).name() << " reset called"
     //                        << " *_count: " << *_count);
 
-                           delete _p;
-                           _p = nullptr;
-                           (*_count) = 0;
+    delete _p;
+    _p = nullptr;
+    (*_count) = 0;
 }
 
 template <typename T>
@@ -244,9 +248,9 @@ void SharedPtr<T>::reset(T* __p)
     // DEBUG_MSG("SharedPtr " << typeid(T).name() << " reset called"
     //                        << " *_count: " << *_count);
 
-                           delete _p;
-                           _p = __p;
-                           (*_count) = 1;
+    delete _p;
+    _p = __p;
+    (*_count) = 1;
 }
 
 template <typename T>
