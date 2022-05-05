@@ -2,7 +2,7 @@
  * @file shared_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for SharedPtr class
- * @version 1.0.7
+ * @version 1.0.8
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -90,19 +90,16 @@ SharedPtr<T>::~SharedPtr()
      * @post _p is nullptr
      */
 
-    if (_p != nullptr) {
+    // if (_p != nullptr) {
 
-        DEBUG_MSG("SharedPtr " << typeid(T).name() << " destructor called"
-                               << " *_count: " << *_count);
+    DEBUG_MSG("SharedPtr " << typeid(T).name() << " destructor called"
+                           << " *_count: " << *_count);
 
-        if (--(*_count) == 0) {
-            delete _p;
-            delete _count;
-        }
-
+    if (--(*_count) == 0) {
+        delete _count;
         _p = nullptr;
-        _count = nullptr;
     }
+    // }
 }
 
 template <typename T>
@@ -127,6 +124,38 @@ SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr& sPtr)
     }
 
     return *this;
+}
+
+template <typename T>
+T& SharedPtr<T>::operator*() const
+{
+    /**
+     * @brief Overload the * operator
+     *
+     * @tparam T
+     * @return T
+     */
+
+    DEBUG_MSG("SharedPtr " << typeid(T).name() << " * operator called"
+                           << " *_count: " << *_count);
+
+    return *_p;
+}
+
+template <typename T>
+T* SharedPtr<T>::operator->() const
+{
+    /**
+     * @brief Overload the -> operator
+     *
+     * @tparam T
+     * @return T*
+     */
+
+    DEBUG_MSG("SharedPtr " << typeid(T).name() << " -> operator called"
+                           << " *_count: " << *_count);
+
+    return _p;
 }
 
 template <typename T>

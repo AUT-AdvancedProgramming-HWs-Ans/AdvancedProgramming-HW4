@@ -2,7 +2,7 @@
  * @file main.cpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the main file for testing UniquePtr class
- * @version 1.0.7
+ * @version 1.0.8
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -227,6 +227,21 @@ int main(int argc, char** argv)
             std::cout << "ptr2.get() = " << ptr2.get() << std::endl;
             ptr2.~SharedPtr();
         */
+
+        /*
+            // Operator* of SharedPtr test 21
+            std::cout << "******** Operator* of SharedPtr test ********" << std::endl;
+            SharedPtr<int> ptr { new int { 10 } };
+            std::cout << "*ptr = " << *ptr << std::endl;
+        */
+
+        /*
+            // Operator-> of SharedPtr test 22
+            std::cout << "******** Operator-> of SharedPtr test ********" << std::endl;
+            UniquePtr<std::string> ptr{new std::string{"hello"}};
+            std::cout << "ptr->length() = " << ptr->length() << std::endl; // output: 5
+        */
+
 
     } else {
         ::testing::InitGoogleTest(&argc, argv);
