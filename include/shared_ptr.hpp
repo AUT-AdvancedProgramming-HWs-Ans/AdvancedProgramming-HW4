@@ -2,7 +2,7 @@
  * @file shared_ptr.hpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header content for SharedPtr class
- * @version 1.0.9
+ * @version 1.1.0
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -156,6 +156,22 @@ T* SharedPtr<T>::operator->() const
                            << " *_count: " << *_count);
 
     return _p;
+}
+
+template <typename T>
+SharedPtr<T>::operator bool() const
+{
+    /**
+     * @brief Overload the bool operator
+     *
+     * @tparam T
+     * @return bool
+     */
+
+    DEBUG_MSG("SharedPtr " << typeid(T).name() << " bool operator called"
+                           << " *_count: " << *_count);
+
+    return _p != nullptr;
 }
 
 template <typename T>

@@ -2,7 +2,7 @@
  * @file main.cpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the main file for testing UniquePtr class
- * @version 1.0.9
+ * @version 1.1.0
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -242,6 +242,37 @@ int main(int argc, char** argv)
             std::cout << "ptr->length() = " << ptr->length() << std::endl; // output: 5
         */
 
+        /*
+            // reset() member function of SharedPtr test 23
+            std::cout << "******** reset() member function of SharedPtr test ********" << std::endl;
+            SharedPtr<int> ptr { new int { 10 } };
+            std::cout << "*ptr.get() = " << *ptr.get() << std::endl;
+            ptr.reset();
+            std::cout << "ptr.get() = " << ptr.get() << std::endl;
+        */
+
+        /*
+            // Reset with new object of class SharedPtr test 24
+            std::cout << "******** Reset with new object of class SharedPtr test ********" << std::endl;
+            SharedPtr<int> ptr { new int { 10 } };
+            std::cout << "*ptr.get() = " << *ptr.get() << std::endl;
+            ptr.reset(new int { 20 });
+            std::cout << "*ptr.get() = " << *ptr.get() << std::endl;
+        */
+
+        /*
+            // Operator bool of SharedPtr test 25
+            std::cout << "******** Operator bool of SharedPtr test ********" << std::endl;
+            SharedPtr<int> ptr { new int { 10 } };
+            std::cout << "ptr.get() = " << ptr.get() << std::endl;
+            std::cout << "ptr.use_count() = " << ptr.use_count() << std::endl;
+            std::cout << "ptr = " << ptr << std::endl;
+            if (ptr) {
+                std::cout << "ptr is true" << std::endl;
+            } else {
+                std::cout << "ptr is false" << std::endl;
+            }
+        */
 
     } else {
         ::testing::InitGoogleTest(&argc, argv);
