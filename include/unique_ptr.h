@@ -2,7 +2,7 @@
  * @file unique_ptr.h
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the header file for UniquePtr class
- * @version 1.0.5
+ * @version 1.0.6
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -35,7 +35,7 @@ public:
     T* release();
 
 private:
-    T* _p;
+    T* _p;    
 };
 
 #include "unique_ptr.hpp"

@@ -2,7 +2,7 @@
  * @file main.cpp
  * @author Erfan Rasti (erfanrasty@gmail.com)
  * @brief This is the main file for testing UniquePtr class
- * @version 1.0.5
+ * @version 1.0.6
  * @date 2022-05-05
  *
  * @copyright Copyright (c) 2022
@@ -17,7 +17,7 @@
 
 int main(int argc, char** argv)
 {
-    if (false) // make false to run unit-tests
+    if (true) // make false to run unit-tests
     {
         // debug section
 
@@ -190,6 +190,17 @@ int main(int argc, char** argv)
             std::cout << "ptr2.get() = " << ptr2.get() << std::endl;
             std::cout << "*ptr2.get() = " << *ptr2.get() << std::endl;
         */
+
+    //    /*
+
+        // use_count member function of SharedPtr test 18
+        std::cout << "******** use_count member function of SharedPtr test ********" << std::endl;
+        SharedPtr<int> ptr1 { new int { 10 } };
+        std::cout << "ptr1.use_count() = " << ptr1.use_count() << std::endl;
+        SharedPtr<int> ptr2 { ptr1 };
+        std::cout << "ptr1.use_count() = " << ptr1.use_count() << std::endl;
+        std::cout << "ptr2.use_count() = " << ptr2.use_count() << std::endl;
+        // */
 
     } else {
         ::testing::InitGoogleTest(&argc, argv);
